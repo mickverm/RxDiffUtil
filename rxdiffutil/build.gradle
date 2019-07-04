@@ -1,6 +1,29 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'RxDiffUtil'
+
+    publishedGroupId = 'be.mickverm.rxjava2'
+    libraryName = 'RxDiffUtil'
+    artifact = 'rxdiffutil'
+
+    libraryDescription = ''
+
+    siteUrl = 'https://github.com/mickverm/RxDiffUtil'
+    gitUrl = 'https://github.com/mickverm/RxDiffUtil.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'Mickverm'
+    developerName = 'Michiel Vermeersch'
+    developerEmail = 'mick.vermeersch@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 android {
     compileSdkVersion 28
 
@@ -16,3 +39,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
 }
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'

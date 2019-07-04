@@ -5,9 +5,10 @@ Usage
 -----
 
 ````kotlin
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(), Consumer<Pair<List<Item>, DiffUtil.DiffResult> {
+class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(), 
+    Consumer<Pair<List<Item>, DiffUtil.DiffResult> {
 
-	private var items = listOf<Item>()
+    private var items = listOf<Item>()
 
     override fun accept(pair: Pair<List<Item>, DiffUtil.DiffResult>) {
         items = pair.first

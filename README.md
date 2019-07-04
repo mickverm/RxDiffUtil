@@ -1,5 +1,23 @@
 RxDiffUtil
 ==========
+[ ![Download](https://api.bintray.com/packages/mickverm/maven/RxDiffUtil/images/download.svg) ](https://bintray.com/mickverm/maven/RxDiffUtil/_latestVersion)
+
+Download
+--------
+Gradle:
+````groovy
+implementation 'be.mickverm.rxjava2:rxdiffutil:1.0.0'
+````
+
+or Maven:
+````xml
+<dependency>
+  <groupId>be.mickverm.rxjava2</groupId>
+  <artifactId>rxdiffutil</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
+````
 
 Usage
 -----

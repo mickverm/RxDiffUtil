@@ -4,7 +4,7 @@ RxDiffUtil
 
 Download
 --------
-Gradle:
+
 ````groovy
 implementation 'be.mickverm.rxjava2:rxdiffutil:1.0.0'
 ````

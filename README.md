@@ -33,7 +33,7 @@ database.observableItems
 	.subscribe(recyclerViewAdapter)
 
 database.flowableItems
-	.compose(RxDiffUtil.calculateObservable((ItemDiffCallback)::create))
+	.compose(RxDiffUtil.calculateFlowable((ItemDiffCallback)::create))
 	.subscribeOn(Schedulers.computation())
 	.observeOn(AndroidSchedulers.mainThread())
 	.subscribe(recyclerViewAdapter)

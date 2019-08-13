@@ -10,7 +10,8 @@ import be.mickverm.rxdiffutil.sample.R
 import be.mickverm.rxdiffutil.sample.data.models.Item
 import io.reactivex.functions.Consumer
 
-class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ViewHolder>(), Consumer<Pair<List<Item>, DiffUtil.DiffResult>> {
+class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ViewHolder>(),
+    Consumer<Pair<List<Item>, DiffUtil.DiffResult>> {
 
     private var items = listOf<Item>()
 

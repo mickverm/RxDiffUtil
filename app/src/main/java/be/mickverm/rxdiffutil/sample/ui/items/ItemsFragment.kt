@@ -46,7 +46,7 @@ class ItemsFragment : Fragment() {
 
         disposables.add(
             viewModel.randomItems
-                .compose(RxDiffUtil.calculateFlowable((ItemDiffCallback)::create))
+                .compose(RxDiffUtil.calculateFlowable(::ItemDiffCallback))
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(adapter)

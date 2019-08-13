@@ -8,29 +8,12 @@ class ItemDiffCallback(
     private val next: List<Item>
 ) : DiffUtil.Callback() {
 
-    companion object {
-        fun create(current: List<Item>, next: List<Item>): ItemDiffCallback {
-            return ItemDiffCallback(current, next)
-        }
-    }
+    override fun getOldListSize() = current.size
+    override fun getNewListSize() = next.size
 
-    override fun getOldListSize(): Int {
-        return current.size
-    }
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        current[oldItemPosition].id == next[newItemPosition].id
 
-    override fun getNewListSize(): Int {
-        return next.size
-    }
-
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val currentItem = current[oldItemPosition]
-        val nextItem = next[newItemPosition]
-        return currentItem.id == nextItem.id
-    }
-
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val currentItem = current[oldItemPosition]
-        val nextItem = next[newItemPosition]
-        return currentItem == nextItem
-    }
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        current[oldItemPosition] == next[newItemPosition]
 }

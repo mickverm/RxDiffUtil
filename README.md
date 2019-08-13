@@ -27,13 +27,13 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
 ````kotlin
 database.observableItems
-	.compose(RxDiffUtil.calculateObservable((ItemDiffCallback)::create))
+	.compose(RxDiffUtil.calculateObservable(::ItemDiffCallback))
 	.subscribeOn(Schedulers.computation())
 	.observeOn(AndroidSchedulers.mainThread())
 	.subscribe(recyclerViewAdapter)
 
 database.flowableItems
-	.compose(RxDiffUtil.calculateFlowable((ItemDiffCallback)::create))
+	.compose(RxDiffUtil.calculateFlowable(::ItemDiffCallback))
 	.subscribeOn(Schedulers.computation())
 	.observeOn(AndroidSchedulers.mainThread())
 	.subscribe(recyclerViewAdapter)

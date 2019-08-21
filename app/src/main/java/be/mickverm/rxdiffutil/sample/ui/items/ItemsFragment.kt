@@ -12,6 +12,7 @@ import be.mickverm.rxdiffutil.RxDiffUtil
 import be.mickverm.rxdiffutil.sample.R
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 
 class ItemsFragment : Fragment() {
@@ -26,16 +27,16 @@ class ItemsFragment : Fragment() {
     private val disposables = CompositeDisposable()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_items, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(
-            this,
-            ItemsFragmentViewModelFactory()
+                this,
+                ItemsFragmentViewModelFactory()
         ).get(ItemsFragmentViewModel::class.java)
 
         adapter = ItemsAdapter()
@@ -44,13 +45,12 @@ class ItemsFragment : Fragment() {
         rvItems.layoutManager = GridLayoutManager(context, 5)
         rvItems.adapter = adapter
 
-        disposables.add(
-            viewModel.randomItems
+        viewModel.randomItems
                 .compose(RxDiffUtil.calculateFlowable(::ItemDiffCallback))
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(adapter)
-        )
+                .addTo(disposables)
     }
 
     override fun onDestroyView() {

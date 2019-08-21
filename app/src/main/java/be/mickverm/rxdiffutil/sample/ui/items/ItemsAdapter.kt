@@ -4,34 +4,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import be.mickverm.rxdiffutil.RxDiffUtilAdapter
 import be.mickverm.rxdiffutil.sample.R
 import be.mickverm.rxdiffutil.sample.data.models.Item
-import io.reactivex.functions.Consumer
 
-class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ViewHolder>(),
-    Consumer<Pair<List<Item>, DiffUtil.DiffResult>> {
-
-    private var items = listOf<Item>()
+class ItemsAdapter : RxDiffUtilAdapter<Item, ItemsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(
-            R.layout.item_item,
-            parent,
-            false
-        )
+            LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_item,
+                    parent,
+                    false
+            )
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
-    }
-
-    override fun getItemCount() = items.size
-
-    override fun accept(pair: Pair<List<Item>, DiffUtil.DiffResult>) {
-        items = pair.first
-        pair.second.dispatchUpdatesTo(this)
+        holder.bind(getItem(position))
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

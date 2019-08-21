@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/mickverm/RxDiffUtil'
     gitUrl = 'https://github.com/mickverm/RxDiffUtil.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.1.0'
 
     developerId = 'Mickverm'
     developerName = 'Michiel Vermeersch'
@@ -31,6 +31,13 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 28
+    }
+
+    // TODO replace with https://issuetracker.google.com/issues/72050365 once released.
+    libraryVariants.all { variant ->
+        variant.generateBuildConfigProvider.configure { task ->
+            task.enabled = false
+        }
     }
 }
 

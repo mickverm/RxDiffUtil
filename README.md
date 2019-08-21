@@ -6,7 +6,7 @@ Download
 --------
 
 ````groovy
-implementation 'be.mickverm.rxjava2:rxdiffutil:1.0.0'
+implementation 'be.mickverm.rxjava2:rxdiffutil:1.1.0'
 ````
 
 Usage
@@ -24,6 +24,15 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     }
 }
 ````
+
+or 
+
+````kotlin
+class RecyclerViewAdapter : RxDiffUtilAdapter<Item, ItemRecyclerViewAdapter.ViewHolder>() {
+
+}
+````
+
 
 ````kotlin
 database.observableItems

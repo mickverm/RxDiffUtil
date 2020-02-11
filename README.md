@@ -36,14 +36,16 @@ class RecyclerViewAdapter : RxDiffUtilAdapter<Item, ItemRecyclerViewAdapter.View
 
 ````kotlin
 database.observableItems
+	.subscribeOn(Schedulers.io())
+	.observeOn(Schedulers.computation())
 	.compose(RxDiffUtil.calculateObservable(::ItemDiffCallback))
-	.subscribeOn(Schedulers.computation())
 	.observeOn(AndroidSchedulers.mainThread())
 	.subscribe(recyclerViewAdapter)
 
 database.flowableItems
+	.subscribeOn(Schedulers.io())
+	.observeOn(Schedulers.computation())
 	.compose(RxDiffUtil.calculateFlowable(::ItemDiffCallback))
-	.subscribeOn(Schedulers.computation())
 	.observeOn(AndroidSchedulers.mainThread())
 	.subscribe(recyclerViewAdapter)
 ````
@@ -51,7 +53,7 @@ database.flowableItems
 License
 -------
 
-    Copyright 2019 Michiel Vermeersch
+    Copyright 2020 Michiel Vermeersch
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
